@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+:root {
+  /* richer amber — shifted warmer and slightly brighter */
+  --flame: 32, 94%, 68%;
+  --flame-soft: 36, 85%, 74%;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* warmer near-black — a faint brown undertone instead of cool purple */
+  background: #0b0804;
+  color: hsl(var(--flame-soft));
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* a warm room — deeper amber centre, richer vignette */
+.room {
+  background:
+    radial-gradient(120% 90% at 50% 38%, rgba(80, 50, 20, 0.22), rgba(11, 8, 4, 0) 60%),
+    radial-gradient(140% 120% at 50% 50%, rgba(11, 8, 4, 0) 55%, rgba(0, 0, 0, 0.75) 100%),
+    #0b0804;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-session {
+  0%,
+  100% {
+    opacity: 0.88;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 1.4s ease-out both;
+}
+
+.rise-slow {
+  animation: rise 2.4s ease-out both;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.12);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes warm-flare {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+  22% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+
+@keyframes whisper {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  20% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+  72% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* the room's constant baseline warmth — a little more present now */
+@keyframes ambient-warm {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
