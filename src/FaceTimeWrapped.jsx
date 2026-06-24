@@ -452,7 +452,7 @@ function NightOwlSlide() {
 }
 
 // Slide 11 — Share
-function ShareSlide({ onClose }) {
+function ShareSlide({ onReplay }) {
   const [copied, setCopied] = useState(false)
 
   const handleShare = useCallback(async (e) => {
@@ -555,7 +555,7 @@ function ShareSlide({ onClose }) {
       </button>
 
       <button
-        onClick={(e) => { e.stopPropagation(); onClose() }}
+        onClick={(e) => { e.stopPropagation(); onReplay() }}
         style={{
           marginTop: 14,
           background: 'none', border: 'none', cursor: 'pointer',
@@ -563,7 +563,7 @@ function ShareSlide({ onClose }) {
           animation: ani('slide-up', 0.65),
         }}
       >
-        back to app
+        watch again
       </button>
     </SlideShell>
   )
@@ -576,7 +576,7 @@ const SLIDES = [
   PlacesSlide, StreakSlide, NightOwlSlide, ShareSlide,
 ]
 
-export default function FaceTimeWrapped({ onClose }) {
+export default function FaceTimeWrapped() {
   const [slide, setSlide] = useState(0)
   const touchX = useRef(null)
 
@@ -599,12 +599,14 @@ export default function FaceTimeWrapped({ onClose }) {
       : Math.max(s - 1, 0))
   }, [])
 
+  const replay = useCallback(() => setSlide(0), [])
+
   const SlideComponent = SLIDES[slide]
 
   return (
     <div
       style={{
-        position: 'fixed', inset: 0, zIndex: 50,
+        position: 'fixed', inset: 0,
         fontFamily: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
         WebkitFontSmoothing: 'antialiased',
         userSelect: 'none',
@@ -616,24 +618,9 @@ export default function FaceTimeWrapped({ onClose }) {
     >
       <ProgressBar current={slide} total={SLIDES.length} />
 
-      {/* Close button */}
-      <button
-        onClick={(e) => { e.stopPropagation(); onClose() }}
-        style={{
-          position: 'absolute', top: 18, right: 14, zIndex: 30,
-          width: 30, height: 30, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.15)',
-          border: 'none', cursor: 'pointer',
-          color: 'white', fontSize: 20, lineHeight: 1,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-      >
-        ×
-      </button>
-
       {/* Slide — key causes full remount on each slide change, resetting animations */}
       <div key={slide} style={{ position: 'absolute', inset: 0, animation: 'wrapped-slide-in 0.38s cubic-bezier(0.25,0.46,0.45,0.94) both' }}>
-        <SlideComponent onClose={onClose} />
+        <SlideComponent onReplay={replay} />
       </div>
     </div>
   )
