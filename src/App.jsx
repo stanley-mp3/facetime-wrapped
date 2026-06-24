@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import FaceTimeWrapped from './FaceTimeWrapped'
 
 const flame = (a = 1) => `hsla(32, 94%, 68%, ${a})`
 
@@ -192,6 +193,8 @@ export default function App() {
   const [satWith, setSatWith] = useState(0)
   const endRef = useRef(0)
 
+  const [showWrapped, setShowWrapped] = useState(false)
+
   const [ripples, setRipples] = useState([])
   const [glows, setGlows] = useState([])
   const [flaring, setFlaring] = useState(() => new Set())
@@ -378,6 +381,15 @@ export default function App() {
               begin a quiet session
             </button>
             <WarmthButton onClick={sendWarmth} />
+            <button
+              onClick={() => setShowWrapped(true)}
+              className="text-xs font-light tracking-[0.2em] transition-all duration-500 hover:scale-[1.04]"
+              style={{ color: flame(0.32) }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = flame(0.6))}
+              onMouseLeave={(e) => (e.currentTarget.style.color = flame(0.32))}
+            >
+              facetime wrapped ›
+            </button>
           </div>
         )}
 
@@ -446,6 +458,8 @@ export default function App() {
           </div>
         )}
       </footer>
+
+      {showWrapped && <FaceTimeWrapped onClose={() => setShowWrapped(false)} />}
     </div>
   )
 }
