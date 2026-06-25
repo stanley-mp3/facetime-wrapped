@@ -1,6 +1,10 @@
 # FaceTime Wrapped
 
-A Spotify-Wrapped-style year-in-review for your FaceTime calls. 11 animated slides that reveal your year of conversations — shareable, mobile-first, and built entirely in the browser.
+FaceTime Wrapped is a concept app inspired by Spotify Wrapped — but instead of music stats, it replays your year of FaceTime calls as a series of beautiful, animated slides.
+
+The idea is that at the end of the year, iPhone users get a personalised story showing who they called most, how long they talked, their most epic call, the places they called from, and their longest streak with someone. Stats that people actually care about — the kind you want to screenshot and share.
+
+Each slide is designed to feel like a moment. Big numbers count up in front of you, names slam onto the screen, flames flicker on your streak. Then at the end, everything is pulled into a single shareable card — your FaceTime year at a glance.
 
 ---
 
